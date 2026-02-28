@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-primary: #1a73e8;
+  --theme-text: #0f172a;
+  --theme-bg-start: rgba(26, 115, 232, 0.09);
+  --theme-bg-end: rgba(24, 128, 56, 0.08);
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-surface text-text-primary;
+    font-family: 'Manrope', system-ui, sans-serif;
+    line-height: 1.5;
+    background-image:
+      radial-gradient(circle at 10% 20%, var(--theme-bg-start), transparent 45%),
+      radial-gradient(circle at 90% 10%, var(--theme-bg-end), transparent 35%),
+      linear-gradient(180deg, #f8fafe 0%, #f4f7fc 45%, #f8fafd 100%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Space Grotesk', 'Manrope', sans-serif;
+    @apply text-text-primary tracking-tight;
+  }
+
+  p {
+    @apply text-text-secondary;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/75 backdrop-blur-2xl border border-white/70 shadow-tier-2 rounded-unified;
+  }
+
+  .surface-card {
+    @apply bg-surface-card border border-white shadow-tier-1 rounded-unified;
+  }
+
+  .pill-label {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em];
+  }
+
+  .data-grid {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+}
+
+::selection {
+  background: rgba(26, 115, 232, 0.22);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.55);
+}
+
+:focus-visible {
+  @apply outline-none ring-2 ring-primary/45 ring-offset-2 ring-offset-surface;
+}
+
+[data-app-state='crisis'] body,
+[data-app-state='crisis'] {
+  --theme-bg-start: rgba(217, 48, 37, 0.14);
+  --theme-bg-end: rgba(217, 48, 37, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
